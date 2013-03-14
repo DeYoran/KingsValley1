@@ -11,10 +11,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class KingsValley implements ApplicationListener {
+	//Fields
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
+	
+	
 	
 	@Override
 	public void create() {		
@@ -24,10 +27,10 @@ public class KingsValley implements ApplicationListener {
 		camera = new OrthographicCamera(1, h/w);
 		batch = new SpriteBatch();
 		
-		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
+		texture = new Texture(Gdx.files.internal("data/explorer.png"));
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
+		TextureRegion region = new TextureRegion(texture, 0, 0, 1280, 720);
 		
 		sprite = new Sprite(region);
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
@@ -43,9 +46,9 @@ public class KingsValley implements ApplicationListener {
 
 	@Override
 	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0.06f, 0.06f, 0.06f, 1f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		
+		Gdx.app.log("uit de render method", "Ik wordt aangeroepen" + Gdx.graphics.getWidth() + " | " + Gdx.graphics.getHeight());
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		sprite.draw(batch);
