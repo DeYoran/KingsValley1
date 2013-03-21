@@ -18,6 +18,8 @@ public class Explorer {
 	private AnimatedSprite state;
 	private ExplorerWalkRight walkRight;
 	private ExplorerIdleRight idleRight;
+	private ExplorerIdleLeft idleLeft;
+	private ExplorerWalkLeft walkLeft;
 	
 	
 	
@@ -66,6 +68,20 @@ public class Explorer {
 	{
 		this.walkRight = walkRight;
 	}
+	public ExplorerIdleLeft getIdleLeft()
+	{
+		return this.idleLeft;
+	}
+	public void setIdleLeft(ExplorerIdleLeft idleLeft)
+	{
+		this.idleLeft = idleLeft;
+	}	
+	public ExplorerWalkLeft getWalkLeft() {
+		return this.walkLeft;
+	}
+	public void setWalkLeft(ExplorerWalkLeft walkLeft) {
+		this.walkLeft = walkLeft;
+	}
 	
 	
 	//Constructor
@@ -85,6 +101,8 @@ public class Explorer {
 		
 		this.walkRight = new ExplorerWalkRight(this);
 		this.idleRight = new ExplorerIdleRight(this);
+		this.idleLeft = new ExplorerIdleLeft(this);
+		this.walkLeft = new ExplorerWalkLeft(this);
 		this.state = this.idleRight;
 	}
 	

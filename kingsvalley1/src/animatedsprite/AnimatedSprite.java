@@ -7,7 +7,8 @@ public class AnimatedSprite {
 	private Explorer explorer;
 	private int[] xValue = { 0, 18, 36, 54, 72, 90, 108, 126 };
 	protected int i = 0;
-	private float timer = 0f;	
+	private float timer = 0f;
+	protected boolean flipX = false;
 
 	//Constructor
 	public AnimatedSprite(Explorer explorer)
@@ -41,7 +42,7 @@ public class AnimatedSprite {
 				  0,
 				  18,
 				  32,
-				  false,
+				  this.flipX,
 				  false);
 	}
 

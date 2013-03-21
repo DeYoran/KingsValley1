@@ -22,11 +22,21 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				if (this.explorer.getState().equals(this.explorer.getIdleRight()))
+				if (this.explorer.getState().equals(this.explorer.getIdleRight()) ||
+					this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
+					this.explorer.getState().equals(this.explorer.getWalkLeft()))
 				{
 					this.explorer.setState(this.explorer.getWalkRight());
 				}
-				break;		
+				break;	
+			case Keys.LEFT:
+				if (this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
+				    this.explorer.getState().equals(this.explorer.getIdleRight())||
+				    this.explorer.getState().equals(this.explorer.getWalkRight()))
+				{
+					this.explorer.setState(this.explorer.getWalkLeft());
+				}
+				break;	
 		}	
 		return false;
 	}
@@ -41,7 +51,13 @@ public class ExplorerInputProcessor implements InputProcessor
 				{
 					this.explorer.setState(this.explorer.getIdleRight());
 				}
-				break;		
+				break;
+			case Keys.LEFT:
+				if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
+				{
+					this.explorer.setState(this.explorer.getIdleLeft());
+				}
+				break;
 		}	
 		return false;
 	}
