@@ -1,6 +1,8 @@
 package explorer;
+import inputprocessor.ExplorerInputProcessor;
 import animatedsprite.AnimatedSprite;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import nl.am1a.kingsvalley1.KingsValley;
@@ -12,8 +14,11 @@ public class Explorer {
 	private Vector2 position;
 	private float speed;
 	private Texture texture;
+	private ExplorerInputProcessor inputProcessor;
 	private AnimatedSprite state;
 	private ExplorerWalkRight walkRight;
+	private ExplorerIdleRight idleRight;
+	
 	
 	
 	//Properties
@@ -37,6 +42,31 @@ public class Explorer {
 	{
 		return this.game;
 	}
+	public AnimatedSprite getState()
+	{
+		return this.state;
+	}
+	public void setState(AnimatedSprite state)
+	{
+		this.state = state;
+	}
+	public ExplorerIdleRight getIdleRight()
+	{
+		return this.idleRight;
+	}
+	public void setIdleRight(ExplorerIdleRight idleRight)
+	{
+		this.idleRight = idleRight;
+	}
+	public ExplorerWalkRight getWalkRight()
+	{
+		return this.walkRight;
+	}
+	public void setWalkRight(ExplorerWalkRight walkRight)
+	{
+		this.walkRight = walkRight;
+	}
+	
 	
 	//Constructor
 	public Explorer(KingsValley game, Vector2 position, float speed)
@@ -45,8 +75,17 @@ public class Explorer {
 		this.position = position;
 		this.speed = speed;	
 		this.texture = new Texture("data/explorer.png");
+		
+		//Inputprocessor zorgt voor alle inputdetectie
+		//-----------------------------------------------------
+		this.inputProcessor = new ExplorerInputProcessor(this);
+		Gdx.input.setInputProcessor(this.inputProcessor);
+		//-----------------------------------------------------
+		
+		
 		this.walkRight = new ExplorerWalkRight(this);
-		this.state = this.walkRight;
+		this.idleRight = new ExplorerIdleRight(this);
+		this.state = this.idleRight;
 	}
 	
 	
