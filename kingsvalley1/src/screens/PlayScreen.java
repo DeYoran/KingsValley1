@@ -1,5 +1,6 @@
 package screens;
 import image.Image;
+import inputprocessor.ExplorerInputProcessor;
 import nl.am1a.kingsvalley1.KingsValley;
 
 import com.badlogic.gdx.Gdx;
@@ -17,11 +18,36 @@ public class PlayScreen implements Screen{
 	private Explorer explorer;
 	private Image arrow_right, arrow_left;
 	private OrthographicCamera camera;
+	private ExplorerInputProcessor inputProcessor;
+	private Vector2 mousePointer;
+	
+	//Properties
+	public Explorer getExplorer()
+	{
+		return this.explorer;
+	}
+	public void setExplorer(Explorer explorer)
+	{
+		this.explorer = explorer;
+	}
+	public Image getArrowRight()
+	{
+		return this.arrow_right;
+	}
+	public void setMousePointer(Vector2 mousePointer)
+	{		
+		this.mousePointer = mousePointer;
+	}
 	
 	//Constructor
 	public PlayScreen(KingsValley game)
 	{
 		this.game = game;
+		//Inputprocessor zorgt voor alle inputdetectie
+		//-----------------------------------------------------
+		this.inputProcessor = new ExplorerInputProcessor(this);
+		Gdx.input.setInputProcessor(this.inputProcessor);
+		//-----------------------------------------------------
 	}
 	
 	@Override
@@ -57,9 +83,9 @@ public class PlayScreen implements Screen{
 		camera.position.set(0f, 0f, 0f);
 		camera.update();
 		Gdx.app.log("show", "Ik wordt een keer aangeroepen");
-		this.explorer = new Explorer(this.game, new Vector2(0f,0f), 1f);
+		this.explorer = new Explorer(this.game, new Vector2(100f,0f), 1f);
 		this.arrow_right = new Image(this.game,
-									 new Vector2(w/2f - 64f * 2f, -h/2f),
+									 new Vector2(w/2f - 64, -h/2f),
 									 "data/arrows/Arrow-Right.png");
 		this.arrow_left = new Image(this.game, 
 									new Vector2(-w/2f, -h/2f),

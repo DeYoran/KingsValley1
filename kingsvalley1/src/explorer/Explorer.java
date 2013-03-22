@@ -14,7 +14,6 @@ public class Explorer {
 	private Vector2 position;
 	private float speed;
 	private Texture texture;
-	private ExplorerInputProcessor inputProcessor;
 	private AnimatedSprite state;
 	private ExplorerWalkRight walkRight;
 	private ExplorerIdleRight idleRight;
@@ -92,11 +91,7 @@ public class Explorer {
 		this.speed = speed;	
 		this.texture = new Texture("data/explorer.png");
 		
-		//Inputprocessor zorgt voor alle inputdetectie
-		//-----------------------------------------------------
-		this.inputProcessor = new ExplorerInputProcessor(this);
-		Gdx.input.setInputProcessor(this.inputProcessor);
-		//-----------------------------------------------------
+		
 		
 		
 		this.walkRight = new ExplorerWalkRight(this);

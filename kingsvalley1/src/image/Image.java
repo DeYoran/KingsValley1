@@ -13,6 +13,16 @@ public class Image
 	private String imageName;
 	private Texture texture;
 	
+	//Properties
+	public Vector2 getPosition()
+	{
+		return this.position;
+	}
+	public Texture getTexture()
+	{
+		return this.texture;
+	}
+	
 	//Constructor
 	public Image(KingsValley game, Vector2 position, String imageName )
 	{

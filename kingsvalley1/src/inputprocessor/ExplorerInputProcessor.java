@@ -1,19 +1,21 @@
 package inputprocessor;
 
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
 
-import explorer.Explorer;
+import screens.PlayScreen;
+
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 
 public class ExplorerInputProcessor implements InputProcessor
 {
 	//Fields
-	private Explorer explorer;	
+	private PlayScreen screen;	
 	
 	//Constructor
-	public ExplorerInputProcessor(Explorer explorer)
+	public ExplorerInputProcessor(PlayScreen screen)
 	{
-		this.explorer = explorer;
+		this.screen = screen;
 	}
 
 	@Override
@@ -22,19 +24,19 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				if (this.explorer.getState().equals(this.explorer.getIdleRight()) ||
-					this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
-					this.explorer.getState().equals(this.explorer.getWalkLeft()))
+				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleRight()) ||
+					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()) ||
+					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkLeft()))
 				{
-					this.explorer.setState(this.explorer.getWalkRight());
+					this.screen.getExplorer().setState(this.screen.getExplorer().getWalkRight());
 				}
 				break;	
 			case Keys.LEFT:
-				if (this.explorer.getState().equals(this.explorer.getIdleLeft()) ||
-				    this.explorer.getState().equals(this.explorer.getIdleRight())||
-				    this.explorer.getState().equals(this.explorer.getWalkRight()))
+				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()) ||
+					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleRight())||
+					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkRight()))
 				{
-					this.explorer.setState(this.explorer.getWalkLeft());
+					this.screen.getExplorer().setState(this.screen.getExplorer().getWalkLeft());
 				}
 				break;	
 		}	
@@ -47,15 +49,15 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
-				if (this.explorer.getState().equals(this.explorer.getWalkRight()))
+				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkRight()))
 				{
-					this.explorer.setState(this.explorer.getIdleRight());
+					this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
 				}
 				break;
 			case Keys.LEFT:
-				if (this.explorer.getState().equals(this.explorer.getWalkLeft()))
+				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkLeft()))
 				{
-					this.explorer.setState(this.explorer.getIdleLeft());
+					this.screen.getExplorer().setState(this.screen.getExplorer().getIdleLeft());
 				}
 				break;
 		}	
@@ -71,24 +73,43 @@ public class ExplorerInputProcessor implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
+		int x = 1200;
+		int y = 600;
+		if ( screenX > x  && screenX < x + 100  && screenY > y && screenY < y + 100)
+		{
+			this.screen.getExplorer().setState(this.screen.getExplorer().getWalkRight());
+		}		
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
+		int x = 1200;
+		int y = 600;
+		if ( screenX > x  && screenX < x + 100  && screenY > y && screenY < y + 100)
+		{
+			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
+		}	
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) 
 	{
+		int x = 1200;
+		int y = 600;
+		if ( screenX > x  && screenX < x + 10  && screenY > y && screenY < y + 100)
+		{
+			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
+		}
 		return false;
 	}
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY)
-	{	
+	{
+			
 		return false;
 	}
 
