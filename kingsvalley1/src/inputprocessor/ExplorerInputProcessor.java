@@ -24,6 +24,9 @@ public class ExplorerInputProcessor implements InputProcessor
 		switch(keycode)
 		{
 			case Keys.RIGHT:
+				Gdx.app.log("links", this.screen.getExplorer().getState().toString());
+				Gdx.app.log("rechts", this.screen.getExplorer().getIdleLeft().toString());
+				Gdx.app.log("gelijk", "" + this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()));
 				if (this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleRight()) ||
 					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getIdleLeft()) ||
 					this.screen.getExplorer().getState().equals(this.screen.getExplorer().getWalkLeft()))
@@ -73,24 +76,34 @@ public class ExplorerInputProcessor implements InputProcessor
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button)
 	{
-		int x = 1200;
+		int x_right = 1200;
+		int x_left = 0;
 		int y = 600;
-		if ( screenX > x  && screenX < x + 100  && screenY > y && screenY < y + 100)
+		if ( screenX > x_right  && screenX < x_right + 100  && screenY > y && screenY < y + 100)
 		{
 			this.screen.getExplorer().setState(this.screen.getExplorer().getWalkRight());
-		}		
+		}
+		else if (screenX > x_left && screenX < x_left + 100 && screenY > y && screenY < y + 100)
+		{
+			this.screen.getExplorer().setState(this.screen.getExplorer().getWalkLeft());
+		}
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button)
 	{
-		int x = 1200;
+		int x_right = 1200;
+		int x_left = 0;
 		int y = 600;
-		if ( screenX > x  && screenX < x + 100  && screenY > y && screenY < y + 100)
+		if ( screenX > x_right  && screenX < x_right + 100  && screenY > y && screenY < y + 100)
 		{
 			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleRight());
-		}	
+		}
+		else if (screenX > x_left && screenX < x_left + 100 && screenY > y && screenY < y + 100)
+		{
+			this.screen.getExplorer().setState(this.screen.getExplorer().getIdleLeft());
+		}
 		return false;
 	}
 

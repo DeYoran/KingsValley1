@@ -19,6 +19,7 @@ public class Explorer {
 	private ExplorerIdleRight idleRight;
 	private ExplorerIdleLeft idleLeft;
 	private ExplorerWalkLeft walkLeft;
+	private ExplorerJumpRight jumpRight;
 	
 	
 	
@@ -80,8 +81,13 @@ public class Explorer {
 	}
 	public void setWalkLeft(ExplorerWalkLeft walkLeft) {
 		this.walkLeft = walkLeft;
+	}	
+	public ExplorerJumpRight getJumpRight() {
+		return jumpRight;
 	}
-	
+	public void setJumpRight(ExplorerJumpRight jumpRight) {
+		this.jumpRight = jumpRight;
+	}
 	
 	//Constructor
 	public Explorer(KingsValley game, Vector2 position, float speed)
@@ -89,15 +95,12 @@ public class Explorer {
 		this.game = game;
 		this.position = position;
 		this.speed = speed;	
-		this.texture = new Texture("data/explorer.png");
-		
-		
-		
-		
+		this.texture = new Texture("data/explorer.png");	
 		this.walkRight = new ExplorerWalkRight(this);
 		this.idleRight = new ExplorerIdleRight(this);
 		this.idleLeft = new ExplorerIdleLeft(this);
 		this.walkLeft = new ExplorerWalkLeft(this);
+		this.jumpRight = new ExplorerJumpRight(this);
 		this.state = this.idleRight;
 	}
 	
