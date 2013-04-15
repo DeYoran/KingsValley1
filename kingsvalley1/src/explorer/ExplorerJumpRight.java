@@ -35,7 +35,7 @@ public class ExplorerJumpRight extends AnimatedSprite
 	public void Update(float delta)
 	{
 		float x = this.explorer.getPosition().x + this.explorer.getSpeed();
-		float y = this.a * (float)Math.pow((double)(x - this.h), 2) + this.k;
+		float y = (float)(this.a * Math.pow((double)(x - this.h), 2) + this.k);
 		
 		this.explorer.setPosition(new Vector2(x, y));
 		if ( this.explorer.getPosition().y > this.startY)
