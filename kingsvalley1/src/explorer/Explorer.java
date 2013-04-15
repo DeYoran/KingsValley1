@@ -20,6 +20,9 @@ public class Explorer {
 	private ExplorerIdleLeft idleLeft;
 	private ExplorerWalkLeft walkLeft;
 	private ExplorerJumpRight jumpRight;
+	private ExplorerJumpLeft jumpLeft;
+	private ExplorerIdleJumpLeft idleJumpLeft;
+	private ExplorerIdleJumpRight idleJumpRight;
 	
 	
 	
@@ -81,12 +84,30 @@ public class Explorer {
 	}
 	public void setWalkLeft(ExplorerWalkLeft walkLeft) {
 		this.walkLeft = walkLeft;
+	}
+	public ExplorerJumpLeft getJumpLeft() {
+		return jumpLeft;
+	}
+	public void setJumpLeft(ExplorerJumpLeft jumpLeft) {
+		this.jumpLeft = jumpLeft;
 	}	
 	public ExplorerJumpRight getJumpRight() {
 		return jumpRight;
 	}
 	public void setJumpRight(ExplorerJumpRight jumpRight) {
 		this.jumpRight = jumpRight;
+	}
+	public ExplorerIdleJumpLeft getIdleJumpLeft() {
+		return idleJumpLeft;
+	}
+	public void setIdleJumpLeft(ExplorerIdleJumpLeft idleJumpLeft) {
+		this.idleJumpLeft = idleJumpLeft;
+	}
+	public ExplorerIdleJumpRight getIdleJumpRight() {
+		return idleJumpRight;
+	}
+	public void setIdleJumpRight(ExplorerIdleJumpRight idleJumpRight) {
+		this.idleJumpRight = idleJumpRight;
 	}
 	
 	//Constructor
@@ -100,7 +121,10 @@ public class Explorer {
 		this.idleRight = new ExplorerIdleRight(this);
 		this.idleLeft = new ExplorerIdleLeft(this);
 		this.walkLeft = new ExplorerWalkLeft(this);
-		this.jumpRight = new ExplorerJumpRight(this);
+		this.jumpRight = new ExplorerJumpRight(this, 20, 32);
+		this.jumpLeft = new ExplorerJumpLeft(this, -20, 32);
+		this.idleJumpLeft = new ExplorerIdleJumpLeft(this, -20, 32);
+		this.idleJumpRight = new ExplorerIdleJumpRight(this, 20, 32);
 		this.state = this.idleRight;
 	}
 	

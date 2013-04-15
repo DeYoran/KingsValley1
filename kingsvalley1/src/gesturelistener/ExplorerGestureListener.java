@@ -63,14 +63,33 @@ public class ExplorerGestureListener implements GestureListener
 			{
 				this.explorer.setState(this.explorer.getWalkRight());
 			}
-			else if (this.flingVector.angle() >= 30 && this.flingVector.angle() < 60)
+			else if (this.flingVector.angle() >= 300 && this.flingVector.angle() <= 360)
 			{
-				this.explorer.setState(this.explorer.());
+				this.explorer.getJumpRight().Initialize();
+				this.explorer.setState(this.explorer.getJumpRight());
+			}
+			else if (this.flingVector.angle() > 270 && this.flingVector.angle() < 300)
+			{
+				this.explorer.getIdleJumpRight().Initialize();
+				this.explorer.setState(this.explorer.getIdleJumpRight());
 			}
 		}
 		else if ( velocityX < 0)
 		{
-			this.explorer.setState(this.explorer.getWalkLeft());
+			if ( this.flingVector.angle() >= 150 && this.flingVector.angle() < 210)
+			{
+				this.explorer.setState(this.explorer.getWalkLeft());
+			}
+			else if (this.flingVector.angle() >= 210 && this.flingVector.angle() <= 240)
+			{
+				this.explorer.getJumpLeft().Initialize();
+				this.explorer.setState(this.explorer.getJumpLeft());
+			}
+			else if (this.flingVector.angle() >= 240 && this.flingVector.angle() < 270)
+			{
+				this.explorer.getIdleJumpLeft().Initialize();
+				this.explorer.setState(this.explorer.getIdleJumpLeft());				
+			}
 		}
 		return false;
 	}

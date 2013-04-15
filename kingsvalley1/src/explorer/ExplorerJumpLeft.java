@@ -19,6 +19,7 @@ public class ExplorerJumpLeft extends AnimatedSprite
 		this.explorer = explorer;
 		this.startH = h;
 		this.startK = k;
+		this.flipX = true;
 		this.Initialize();
 	}
 	
