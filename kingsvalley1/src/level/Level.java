@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.FPSLogger;
 
 import nl.am1a.kingsvalley1.KingsValley;
 
@@ -21,6 +22,7 @@ public class Level
 	public Level(KingsValley game, int levelIndex)
 	{
 		this.game = game;
+
 		this.levelPath = String.format("data/%s.txt", levelIndex);
 		try {
 			this.LoadAssets();
@@ -41,7 +43,7 @@ public class Level
 		{
 			lines.add(line);
 			line = reader.readLine();
-			Gdx.app.log("line", line);	
+			//Gdx.app.log("line", line);	
 		}
 				
 	}
