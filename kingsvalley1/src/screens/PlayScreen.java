@@ -20,8 +20,8 @@ public class PlayScreen implements Screen{
 	//Fields
 	private KingsValley game;
 	private Explorer explorer;
-	private Image arrow_right, arrow_left;
 	private OrthographicCamera camera;
+	private float ratio, zoom = 480f;
 	private ExplorerInputProcessor inputProcessor;
 	private ExplorerGestureListener gestureListener;
 	private InputMultiplexer multiplexer;
@@ -37,10 +37,7 @@ public class PlayScreen implements Screen{
 	{
 		this.explorer = explorer;
 	}
-	public Image getArrowRight()
-	{
-		return this.arrow_right;
-	}
+	
 	public void setMousePointer(Vector2 mousePointer)
 	{		
 		this.mousePointer = mousePointer;
@@ -50,6 +47,12 @@ public class PlayScreen implements Screen{
 	public PlayScreen(KingsValley game)
 	{
 		this.game = game;
+		camera = new OrthographicCamera();
+		this.ratio = (float)Gdx.graphics.getWidth() / (float)Gdx.graphics.getHeight();
+		camera.setToOrtho(true, this.ratio * this.zoom, this.zoom);
+		camera.position.set(544f/2f, 480f/2f, 0f);
+		camera.update();		
+		
 		this.explorer = new Explorer(this.game, new Vector2(0f,0f), 1f);
 		//Inputprocessor zorgt voor alle inputdetectie
 		//-----------------------------------------------------
@@ -76,9 +79,8 @@ public class PlayScreen implements Screen{
 		this.explorer.Update(delta);
 		this.game.getBatch().setProjectionMatrix(camera.combined);
 		this.game.getBatch().begin();
+			this.level.Draw(delta);
 			this.explorer.Draw(delta);
-			this.arrow_right.Draw(delta);
-			this.arrow_left.Draw(delta);
 		this.game.getBatch().end();
 	}
 
@@ -88,26 +90,8 @@ public class PlayScreen implements Screen{
 	}
 
 	@Override
-	public void show() {		
-				
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
-		if (w == 1280 )
-		{
-			w = w/2f;
-			h = h/2f;
-		}
-		
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, w, h);
-		camera.position.set(0f, 0f, 0f);
-		camera.update();
-		this.arrow_right = new Image(this.game,
-									 new Vector2(w/2f - 64, -h/2f),
-									 "data/arrows/Arrow-Right.png");
-		this.arrow_left = new Image(this.game, 
-									new Vector2(-w/2f, -h/2f),
-									"data/arrows/Arrow-Left.png");
+	public void show() 
+	{		
 		this.level = new Level(this.game, 0);
 	}
 
